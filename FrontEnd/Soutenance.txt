@@ -1,0 +1,101 @@
+Présentation du site  ---------------------------------- ---------------------------------- ----------------------------------  ---------------------------------- ---------------------------------- ----------------------------------
+
+Montrer que :
+
+- Les travaux ont été ajoutés dynamiquement (section portfolio vide sur le html)
+
+- Les filtres marchent bien
+
+
+
+- Le log in fonctionne (si on modifie l'email ou le mot de passe ca met le message d'erreur)
+
+
+
+- On obtient bien le token
+
+- le header "mode édition s'affiche bien"
+
+- le log in est devenu un logout (qui vide session storage et recharge la page)
+
+- l'encart modifier s'affiche bien
+
+
+
+- les éléments de la modale sont biens supprimés quand on clique dessus (gallerie comprise)
+
+- un message d'erreur s'affiche bien quand:
+		
+		- on entre aucun titre/image
+		-l'image excède la valeur max
+
+-il est impossible de séléctionner autre chose qu'un png ou un jpeg
+
+-l'image s'ajoute bien dans la modale et dans la gallerie quand on clique sur valider
+
+
+
+
+résumé de l'appel des fonctions  ---------------------------------- ---------------------------------- ----------------------------------  ---------------------------------- ---------------------------------- ----------------------------------
+
+
+
+- on vérifie si l'utilisateur est autentifié avec le token
+
+- on récupère les travaux et les catégories
+
+- on ajoute les travaux au portfolio 
+
+- on ajoute les boutons de filtre
+
+
+-------- login -------
+
+- on récupère le token d'autentification
+
+-------- login -------
+
+
+
+- on affiche l'interface du mode édition
+
+- on crée l'affichage 1 de la modale qui permet de supprimer des éléments
+
+- on crée l'affichage 2 de la modale qui permet de créer des éléments
+
+
+
+
+explication de l'importation des projets et des filtres de recherche  ---------------------------------- ---------------------------------- ----------------------------------  ---------------------------------- ---------------------------------- ----------------------------------
+
+- on fait une requete fetch aux adresses respectives des tableaux "works" et "catégorie"
+
+- les fonctions retournent les valeurs de la réponse de l'API et les stockent dans les variables globales "works" et "catégories"
+
+- on crée une balise <image> pour chaque élément de works
+
+- on crée un bouton "catégorie" pour chaque élément du tableau "catégories"
+
+- quand un bouton "catégorie" est cliqué, on filtre les works qui n'ont pas le le meme nom de catégorie que celui de la catégorie séléctionnée
+
+
+
+
+
+explication de la page de connection  ---------------------------------- ---------------------------------- ----------------------------------  ---------------------------------- ---------------------------------- ----------------------------------
+
+- on soumet le formulaire de connection à l'API
+
+- si l'API nous renvoie le Token, on le stocke dans sessionStorage et on ouvre Index.html
+
+- la fonction tester sessionStorage nous ouvre le mode édition
+
+
+
+explication de la modale  ---------------------------------- ---------------------------------- ----------------------------------  ---------------------------------- ---------------------------------- ----------------------------------
+
+- cliquer sur une petite poubelle soumet une requette de type delete à l'adresse works et demande le même id que la poubelle. il faut avoir le token pour effectuer cette action
+
+- on vérifie que toutes les données sont valides avant de soumettre le formulaire pour envoyer un nouveau projet
+
+- on fait une requete fetch de type post à l'adresse de works. elle contient un FormData() et il est nécéssaire d'avoir le token pour effectuer cette action
