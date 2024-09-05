@@ -248,7 +248,6 @@ footer nav ul {
 	margin-top: 20px;
 	display: flex;
 	justify-content: center;
-	color:red;
 
 }
 
@@ -492,6 +491,10 @@ footer nav ul {
 
 .vert {
 	color:green
+}
+
+.rouge {
+	color:red
 }
 
 .nomEtNav, main, footer {

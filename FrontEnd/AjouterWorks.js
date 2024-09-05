@@ -30,7 +30,9 @@ const svgArrow = `
 </svg>
 
 `
-let messageErreur
+
+let messageErreur 
+let boutonValider
 
 testerSessionStorage()
 
@@ -326,6 +328,10 @@ function modaleAffichage2() {
     `
     messageErreur = document.querySelector(".messageErreur")
 
+    messageErreur.innerHTML = ""
+    
+    boutonValider = document.getElementById("validerAjout")
+
     ajouterOptionsCategories() /* met les options de catégories dans un menu déroulant */
 
     vérifierTailleImage() /* vérifie que l'image entrée n'excede pas 4mo */
@@ -363,6 +369,8 @@ function vérifierTailleImage() {
         const maxSize = 4 * 1024 * 1024
 
         if (file && file.size > maxSize) {
+
+            messageErreur.classList.add("rouge")
             messageErreur.innerHTML = "Fichier trop volumineux"
             image.value = ""
         }
@@ -432,12 +440,15 @@ function ecouterAjoutWorks() {
 
         }
         else if (inputFile){
+            messageErreur.classList.add("rouge")
             messageErreur.innerHTML = "Veuillez renseigner un titre"
         }
         else if (Titre) {
+            messageErreur.classList.add("rouge")
             messageErreur.innerHTML = "Veuillez entrer une image"
         }
         else {
+            messageErreur.classList.add("rouge")
             messageErreur.innerHTML = "Veuillez entrer un titre et une image"
         }
 
@@ -481,7 +492,8 @@ function testerFormComplete() {
     Titre = document.getElementById("Titre").value
 
     if (inputFile && Titre) {
-        document.getElementById("validerAjout").classList.add("mettreEnVert")
-        document.getElementById("validerAjout").classList.add("categories")
+
+        boutonValider.classList.add("mettreEnVert")
+        boutonValider.classList.add("categories")
     }
 }
