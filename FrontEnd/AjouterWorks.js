@@ -250,6 +250,12 @@ function ecouterAffichage1() {
         modaleHtml.setAttribute("aria-hidden","true")
     })
 
+    window.onclick = (event) => {
+        if (event.target == modaleHtml) {
+            modaleHtml.setAttribute("aria-hidden","true")
+        }
+    }
+
     document.getElementById("AjouterPhoto").addEventListener("click", ()=> {
         modaleAffichage2()
     })
@@ -284,7 +290,9 @@ async function removeWork(element){
 
 /******************* affichage 2 de la modale ******************/
 
-function modaleAffichage2() {
+async function modaleAffichage2() {
+    
+    categories = await setTableauCategories()
 
     modaleHtml.innerHTML = `
     <div class="modal-wrapper">
